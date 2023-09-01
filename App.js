@@ -5,12 +5,13 @@ import {
   Image,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet
 } from 'react-native'
 
 export default function App() {
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView style={styles.background}>
       <View>
         <Image source={require('./src/assets/logo-m_128.png')} />
       </View>
@@ -39,3 +40,12 @@ export default function App() {
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#191919"
+  }
+})
