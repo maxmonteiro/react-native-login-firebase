@@ -12,7 +12,7 @@ import {
 export default function App() {
   return (
     <KeyboardAvoidingView style={styles.background}>
-      <View>
+      <View style={styles.containerLogo}>
         <Image source={require('./src/assets/logo-m_128.png')} />
       </View>
 
@@ -47,5 +47,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#191919"
+  },
+
+  containerLogo: {
+    flex: 1,
+    justifyContent: "center",
   }
 })
