@@ -7,15 +7,21 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Animated
+  Animated,
+  Keyboard
 } from 'react-native'
 
 export default function App() {
 
-  const [offset] = useState(new Animated.ValueXY({x: 0, y: 90}))
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 90}));
   const [opacity] = useState(new Animated.Value(0));
+  const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
 
   useEffect(() => {
+
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide)
+
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -28,12 +34,26 @@ export default function App() {
       })
     ]).start();
     
-  }, [])
+  }, []);
+
+  function keyboardDidShow() {
+    alert ('teclado aberto')
+  }
+
+  function keyboardDidHide() {
+    alert ('teclado fechado')
+  }
 
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
-        <Image source={require('./src/assets/logo-m_128.png')} />
+        <Animated.Image 
+          style={{
+            width: logo.x,
+            height: logo.y
+          }}
+          source={require('./src/assets/logo-m_128.png')} 
+        />
       </View>
 
       <Animated.View 
@@ -82,12 +102,13 @@ const styles = StyleSheet.create({
   },
 
   containerLogo: {
-    flex: 1,
+    flex: 0,
+    marginTop: '40%',
     justifyContent: "center",
   },
 
   container: {
-    flex: 1,
+    flex: 1.5,
     alignItems: "center",
     justifyContent: "center",
     width: '90%',
