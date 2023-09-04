@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {
   View,
   KeyboardAvoidingView,
@@ -6,17 +6,47 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Animated
 } from 'react-native'
 
 export default function App() {
+
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 90}))
+  const [opacity] = useState(new Animated.Value(0));
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 20
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 200
+      })
+    ]).start();
+    
+  }, [])
+
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
         <Image source={require('./src/assets/logo-m_128.png')} />
       </View>
 
-      <View style={styles.container}>
+      <Animated.View 
+        style={[
+          styles.container,
+          {
+            opacity: opacity,
+            transform: [
+              { translateY: offset.y}
+            ]
+          }
+        ]}
+      >
         <TextInput 
           style={styles.input}
           placeholder='Email'
@@ -38,7 +68,7 @@ export default function App() {
         <TouchableOpacity style={styles.btnRegister}>
           <Text style={styles.registerText}>Criar conta gratuita</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     </KeyboardAvoidingView>
   );
 }
