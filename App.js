@@ -37,11 +37,29 @@ export default function App() {
   }, []);
 
   function keyboardDidShow() {
-    alert ('teclado aberto')
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 55,
+        duration: 200
+      }),
+      Animated.timing(logo.y, {
+        toValue: 65,
+        duration: 200
+      })
+    ]).start();
   }
 
   function keyboardDidHide() {
-    alert ('teclado fechado')
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 130,
+        duration: 200
+      }),
+      Animated.timing(logo.y, {
+        toValue: 155,
+        duration: 200
+      })
+    ]).start();
   }
 
   return (
