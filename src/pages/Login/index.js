@@ -11,7 +11,7 @@ import {
   Keyboard
 } from 'react-native';
 
-export default function Login() {
+export default function Login({ navigation }) {
 
   const [offset] = useState(new Animated.ValueXY({x: 0, y: 90}));
   const [opacity] = useState(new Animated.Value(0));
@@ -102,7 +102,10 @@ export default function Login() {
           <Text style={styles.submitText}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnRegister}>
+        <TouchableOpacity 
+            style={styles.btnRegister}
+            onPress={() =>  navigation.navigate('Register')}
+        >
           <Text style={styles.registerText}>Criar conta gratuita</Text>
         </TouchableOpacity>
       </Animated.View>
