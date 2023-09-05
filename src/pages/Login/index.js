@@ -98,7 +98,10 @@ export default function Login({ navigation }) {
           onChangeText={() => {}}
         />
 
-        <TouchableOpacity style={styles.btnSubmit}>
+        <TouchableOpacity 
+            style={styles.btnSubmit}
+            onPress={() =>  navigation.navigate('Home', { nome: 'Máximo' })}
+        >
           <Text style={styles.submitText}>Acessar</Text>
         </TouchableOpacity>
 
