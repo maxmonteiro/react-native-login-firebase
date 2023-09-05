@@ -26,11 +26,11 @@ export default function App() {
       Animated.spring(offset.y, {
         toValue: 0,
         speed: 4,
-        bounciness: 20
+        bounciness: 20,
       }),
       Animated.timing(opacity, {
         toValue: 1,
-        duration: 200
+        duration: 200,
       })
     ]).start();
     
@@ -40,12 +40,12 @@ export default function App() {
     Animated.parallel([
       Animated.timing(logo.x, {
         toValue: 55,
-        duration: 200
+        duration: 200,
       }),
       Animated.timing(logo.y, {
         toValue: 65,
-        duration: 200
-      })
+        duration: 200,
+      }),
     ]).start();
   }
 
@@ -53,11 +53,11 @@ export default function App() {
     Animated.parallel([
       Animated.timing(logo.x, {
         toValue: 130,
-        duration: 200
+        duration: 200,
       }),
       Animated.timing(logo.y, {
         toValue: 155,
-        duration: 200
+        duration: 200,
       })
     ]).start();
   }
